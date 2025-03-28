@@ -6,6 +6,22 @@ References:
 * [Environment variables precedence in Docker Compose](https://docs.docker.com/compose/how-tos/environment-variables/envvars-precedence/#how-the-table-works)
 * [Set ENV variables within your container's environment](https://docs.docker.com/compose/how-tos/environment-variables/set-environment-variables/#use-the-env_file-attribute)
 
+Tables of Contents
+
+* [Overview](#overview)
+  * [Interpolating into `compose.yaml`](#interpolating-into-composeyaml)
+  * [Providing ENVs to Containers/Services](#providing-envs-to-containersservices)
+  * [Compose Flow](#compose-flow)
+* [Examples](#examples)
+  * [Default Compose File ENVs](#default-compose-file-envs)
+  * [Using `environment:` in Compose File](#using-environment-in-compose-file)
+    * [Using default `.env`](#using-default-env)
+    * [Using explicit `add.env`](#using-explicit-addenv)
+    * [Using multiple explicit env files](#using-multiple-explicit-env-files)
+  * [Using `env_file:` in Compose File](#using-env_file-in-compose-file)
+  * [Using `.env` or `--env_file` with other things in Compose file](#using-env-or---env_file-with-other-things-in-compose-file)
+* [Komodo and ENVs](#komodo-and-envs)
+
 ## Overview
 
 If you learn nothing else from this the key takeaway is that the **`env_file` attribute in a `compose.yaml` file IS NOT related to `.env` and `--env-file`.**
@@ -105,7 +121,7 @@ docker compose -f compose-environment.yaml --env-file add.env up
 This is a variable: someBar alwaysHere
 ```
 
-#### Using multiple explicit `add.env`
+#### Using multiple explicit env files
 
 ```shell
 docker compose -f compose-environment.yaml --env-file add.env --env-file .env up
