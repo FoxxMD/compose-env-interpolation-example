@@ -58,7 +58,7 @@ docker compose up
 ```
 
 * Uses [compose.yaml](/compose.yaml)
-* Uses `.env` for Compose file since no other `--env-file` args
+* Uses [`.env`](/.env) for Compose file since no other `--env-file` args
 * Compose file does not define any env attributes for the service so nothing from `.env` is inserted into container
 
 Output is 
@@ -76,7 +76,7 @@ docker compose -f compose-environment.yaml up
 ```
 
 * Uses [compose-environment.yaml](/compose-environment.yaml)
-* Uses `.env` for Compose file since no other `--env-file` args
+* Uses [`.env`](/.env) for Compose file since no other `--env-file` args
 * Compose file has `environment:` where...
    * `FOO` (container ENV) is set to `${FOO}` from `.env`
    * `HARD` (container ENV) is hardcoded to `alwaysHere` in compose file
@@ -94,7 +94,7 @@ docker compose -f compose-environment.yaml --env-file add.env up
 ```
 
 * Uses [compose-environment.yaml](/compose-environment.yaml)
-* Uses `add.env` for Compose file because of `--env-file` args
+* Uses [`add.env`](/add.env) for Compose file because of `--env-file` args
 * Compose file has `environment:` where...
    * `BAR` (container ENV) is set to `${BAR}` from `add.env`
    * `HARD` (container ENV) is hardcoded to `alwaysHere` in compose file
@@ -112,8 +112,8 @@ docker compose -f compose-environment.yaml --env-file add.env --env-file .env up
 ```
 
 * Uses [compose-environment.yaml](/compose-environment.yaml)
-* Uses `add.env` for Compose file because of `--env-file` arg
-* Uses `.env` for Compose file because of `--env-file` arg
+* Uses [`add.env`](/add.env) for Compose file because of `--env-file` arg
+* Uses [`.env`](/.env) for Compose file because of `--env-file` arg
 * Compose file has `environment:` where...
    * `FOO` (container ENV) is set to `${FOO}` from `.env`
    * `BAR` (container ENV) is set to `${BAR}` from `add.env`
@@ -132,7 +132,7 @@ docker compose -f compose-envfile.yaml up
 ```
 
 * Uses [compose-envfile.yaml](/compose-envfile.yaml)
-* Uses `.env` for Compose file since no other `--env-file` args
+* Uses [`.env`](/.env) for Compose file since no other `--env-file` args
 * Compose file has `env_file:` which inserts everything found in the attribute value (`add.env`) into the container
 
 Output is 
@@ -148,10 +148,10 @@ docker compose -f compose-envfile-interpolated.yaml --env-file inter.env up
 ```
 
 * Uses [compose-envfile-interpolated.yaml](/compose-envfile-interpolated.yaml)
-* Uses `inter.env` for Compose file because of `--env-file` arg
+* Uses [`inter.env`](/inter.env) for Compose file because of `--env-file` arg
   * Would also work if contents of `inter.env` was instead in `.env` and no `--env-file` was provided...
 * `env_file:` attribute has the value `${ENV_FILE_USED}`
-  * which is in `inter.env` with the value as `add.env`
+  * which is in `inter.env` with the value as [`add.env`](/add.env)
   * so compose file uses `env_file: add.env`
 
 Output is 
