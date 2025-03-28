@@ -161,3 +161,24 @@ This is a variable:  someBar
 ```
 
 Remember that the interpolation of variables from `.env`/`--env-file` can be used _anywhere_ in the compose file. Even in keys.
+
+# Komodo and ENVs
+
+[Komodo](https://komo.do/) adds one more layer to this process that occurs **before `docker compose up`**.
+
+Komodo takes the contents of the **Environment** section of your Stack and:
+
+* Interpolates any [Variables](https://komo.do/docs/variables) into the contents like `[[MY_VAR]]`
+* The final content is written to file specified by **Env File Path** in your Stack
+
+After this is done it then runs `docker compose up --env-file .env` and includes any additional files you specified in the **Additional Env Files** section of your stack.
+
+```mermaid
+flowchart TD
+    Z[Komodo Deploy] -->|Interpolates Variables into Environment contents| Y[Final Environment Contents]
+    Y -->|writes to ENV File Path| A
+    A[docker compose up --env-file .env + Additional Env Files section] -->|Parses .env and --env-file args| B(Interpolates values into compose.yaml)
+    B --> C{Creates services}
+    C -->|env_file: and environment:| D[service foo]
+    C -->|env_file: and environment:| E[service bar]
+```
