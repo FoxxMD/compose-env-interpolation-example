@@ -2,4 +2,4 @@ services:
   test:
     build:
       context: .
-    env_file: add.env
+    env_file: ${ENV_FILE_USED}
