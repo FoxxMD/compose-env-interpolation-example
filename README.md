@@ -1,5 +1,7 @@
 # ENVs and Variable Interpolation in Docker Compose
 
+A better-formatted and updated version of this guide is available here [https://blog.foxxmd.dev/posts/compose-envs-explained/](https://blog.foxxmd.dev/posts/compose-envs-explained/)
+
 References:
 
 * [Compose file interpolation](https://docs.docker.com/compose/how-tos/environment-variables/variable-interpolation/#env-file)
