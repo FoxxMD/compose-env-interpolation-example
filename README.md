@@ -8,19 +8,20 @@ References:
 
 Tables of Contents
 
-* [Overview](#overview)
-  * [Interpolating into `compose.yaml`](#interpolating-into-composeyaml)
-  * [Providing ENVs to Containers/Services](#providing-envs-to-containersservices)
-  * [Compose Flow](#compose-flow)
-* [Examples](#examples)
-  * [Default Compose File ENVs](#default-compose-file-envs)
-  * [Using `environment:` in Compose File](#using-environment-in-compose-file)
-    * [Using default `.env`](#using-default-env)
-    * [Using explicit `add.env`](#using-explicit-addenv)
-    * [Using multiple explicit env files](#using-multiple-explicit-env-files)
-  * [Using `env_file:` in Compose File](#using-env_file-in-compose-file)
-  * [Using `.env` or `--env_file` with other things in Compose file](#using-env-or---env_file-with-other-things-in-compose-file)
-* [Komodo and ENVs](#komodo-and-envs)
+- [ENVs and Variable Interpolation in Docker Compose](#envs-and-variable-interpolation-in-docker-compose)
+  - [Overview](#overview)
+      - [Interpolating into `compose.yaml`](#interpolating-into-composeyaml)
+      - [Providing ENVs to Containers/Services](#providing-envs-to-containersservices)
+    - [Compose Flow](#compose-flow)
+  - [Examples](#examples)
+    - [Default Compose File ENVs](#default-compose-file-envs)
+    - [Using `environment:` in Compose File](#using-environment-in-compose-file)
+      - [Using default `.env`](#using-default-env)
+      - [Using explicit `add.env`](#using-explicit-addenv)
+      - [Using multiple explicit env files](#using-multiple-explicit-env-files)
+    - [Using `env_file:` in Compose File](#using-env_file-in-compose-file)
+    - [Using `.env` or `--env_file` with other things in Compose file](#using-env-or---env_file-with-other-things-in-compose-file)
+- [Komodo and ENVs](#komodo-and-envs)
 
 ## Overview
 
@@ -149,12 +150,12 @@ docker compose -f compose-envfile.yaml up
 
 * Uses [compose-envfile.yaml](/compose-envfile.yaml)
 * Uses [`.env`](/.env) for Compose file since no other `--env-file` args
-* Compose file has `env_file:` which inserts everything found in the attribute value (`add.env`) into the container
+* Compose file has `env_file:` which inserts everything found in the attribute value (`.env`) into the container
 
 Output is 
 
 ```
-This is a variable: someBar
+This is a variable: aSecret
 ```
 
 ### Using `.env` or `--env_file` with other things in Compose file
